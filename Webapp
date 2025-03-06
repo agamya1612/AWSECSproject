@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Interactive Web Page</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #0d0f1a, #1e2a3a);
+            color: white;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            flex-direction: column;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        /* Main Wrapper Container */
+        .container {
+            width: 100%;
+            max-width: 1200px; /* Limit max width */
+            padding: 20px; /* Add padding on sides */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        /* Dark Mode Styles */
+        .dark-mode {
+            background: linear-gradient(135deg, #6a1f9d, #1e3c8b); /* Blue-Purple gradient */
+            color: #f0f0f0;
+        }
+
+        /* Cards Flex Layout */
+        .cards-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap; /* Allow wrapping for smaller screens */
+            margin-top: 30px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #1c1e28;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;  /* Increased width */
+            height: 200px; /* Increased height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            text-decoration: none;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+        }
+
+        .card h2, .card p {
+            margin: 0;
+            padding: 5px;
+            color: white;
+        }
+
+        /* Header with Dark Mode Toggle */
+        header {
+            width: 98%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 10;
+        }
+
+        .dark-mode-toggle {
+            display: flex;
+            align-items: center;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            border-radius: 50%;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: 0.4s;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        /* Media Query for Mobile Screens */
+        @media (max-width: 1024px) {
+            .card {
+                width: 250px;  /* Slightly smaller cards for medium screens */
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                flex-direction: column; /* Stack cards vertically */
+                align-items: center;
+            }
+
+            .card {
+                width: 90%;  /* Make cards smaller to fit screen */
+                height: auto;
+                margin-bottom: 20px; /* Add space between stacked cards */
+            }
+
+            h1 {
+                font-size: 2.5em;  /* Adjust header size for smaller screens */
+            }
+
+            h2 {
+                font-size: 1.2em;  /* Adjust card title size */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2em;  /* Further adjust header for small screens */
+            }
+
+            .card {
+                width: 100%;  /* Full width cards on very small screens */
+                height: auto;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Viewer</h1>
+            <div class="dark-mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </header>
+
+        <!-- Cards for websites -->
+        <div class="cards-container">
+            <a href="https://www.programiz.com/" class="card" style="background-image: url('https://as1.ftcdn.net/v2/jpg/01/26/35/58/1000_F_126355834_UU0Q9hZQLD3xsjs8X6V1jb0tyIjfM3zg.jpg');" alt="Programiz background">
+                <div>
+                    <h2>Weather Forecasting</h2>
+                    <p>IP: 1</p>
+                </div>
+            </a>
+            <a href="https://www.programiz.com/" class="card" style="background-image: url('https://as2.ftcdn.net/v2/jpg/02/45/90/83/1000_F_245908332_5LiCyZpNwD1DWcwqZzjVRUhvnuXg6CT2.jpg');" alt="Tech background">
+                <div>
+                    <h2>Car Listing</h2>
+                    <p>IP: 2</p>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+
+        // Check localStorage for the dark mode setting and set it on page load
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeToggle.checked = true;
+        }
+
+        // Toggle Dark Mode
+        darkModeToggle.addEventListener('change', () => {
+            if (darkModeToggle.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+    </script>
+</body>
+</html>
